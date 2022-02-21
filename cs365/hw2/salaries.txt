@@ -1,0 +1,5 @@
+nels 105000.80 
+mary 20000.50 
+frank 18153.33 
+nancy 91868.73 
+michelle 20858

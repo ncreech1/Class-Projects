@@ -1,0 +1,15 @@
+rectangle 10 10 50 60 red
+oval 70 80 100 20 blue
+line 10 30 80 90 magenta
+text 30 40 green Brad Vander Zanden
+roundtangle 200 200 80 80 black LARGE
+rectangle 300 300 100 100 gray
+text 210 210 yellow Nels
+oval 0 300 50 100 orange
+roundtangle 500 100 80 30 red 15
+end
+30 30
+100 90
+10 200
+240 240
+520 120

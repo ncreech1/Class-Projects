@@ -1,0 +1,19 @@
+17
+car turtle 1
+car cardinal_home 1
+car fox 1
+cat bdog_home 1
+cat ydog 1
+bdog_home ydog_home 1
+bdog_home turtle 1
+cardinal fox 1
+cardinal fox_home 1
+fox_home turtle_home 1
+ydog bdog 1
+ydog_home cat_home 1
+fox armadillo_home 1
+fox turtle_home 1
+turtle_home armadillo 1
+bdog cat_home 1
+cardinal_home armadillo_home 1
+armadillo_home armadillo 1

@@ -1,0 +1,16 @@
+14
+car blue_dog 1
+car fox 4
+car armadillo_home 2
+car blue_dog_home 3
+blue_dog fox 3
+blue_dog armadillo 5
+blue_dog armadillo_home 5
+blue_dog blue_dog_home 6
+armadillo armadillo_home 2
+armadillo fox_home 1
+fox blue_dog_home 5
+fox armadillo_home 6
+armadillo_home blue_dog_home 1
+armadillo_home fox_home 1
+fox_home blue_dog_home 2
