@@ -1,0 +1,91 @@
+#!/bin/sh
+
+if [ $# -ne 0 ] && [ $# -ne 1 ]; then
+	echo 'usage: gradescript [1-20]'
+	exit 1
+fi
+
+dir=/home/spatel84/ta/cs360_fall2020/files
+ge="$dir/Lab-2-Gradescript-Examples"
+
+program=l2p3
+
+if [ ! -f $program ]; then
+	echo "Your program $program does not exist."
+	exit 0
+fi
+
+if [ $# -eq 1 ]; then
+	if [ $1 -lt 1 ] || [ $1 -gt 20 ]; then
+		echo 'usage: gradescript [1-20]'
+		exit 1
+	fi
+
+	$dir/$program < $ge/$1.txt > tmp-$1-correct-stdout.txt 2> tmp-$1-correct-stderr.txt
+	./$program < $ge/$1.txt > tmp-$1-test-stdout.txt 2> tmp-$1-test-stderr.txt
+
+    cat tmp-$1-correct-stdout.txt | tr " " "\n" | sort | uniq > tmp-$1-correct-stdout-sorted.txt
+    cat tmp-$1-test-stdout.txt | tr " " "\n" | sort | uniq > tmp-$1-test-stdout-sorted.txt
+
+	diffstdout=`diff -b tmp-$1-test-stdout-sorted.txt tmp-$1-correct-stdout-sorted.txt | wc -l`
+
+	if [ $diffstdout -ne 0 ]; then
+		echo "Problem $1 is incorrect."
+		echo "Your standard output does not match the correct one."
+        echo "Leaving files."
+		exit 1
+	fi
+
+	diffstderr=`diff -b tmp-$1-test-stderr.txt tmp-$1-correct-stderr.txt | wc -l`
+
+	if [ $diffstderr -ne 0 ]; then
+		echo "Problem $1 is incorrect."
+		echo "Your standard error does not match the correct one."
+        echo "Leaving files."
+		exit 1
+	fi
+
+    rm -f tmp-$1-correct-stdout.txt tmp-$1-correct-stdout-sorted.txt tmp-$1-correct-stderr.txt
+    rm -f tmp-$1-test-stdout.txt tmp-$1-test-stdout-sorted.txt tmp-$1-test-stderr.txt
+
+	echo "Problem $1 is correct."
+	echo "Test: ./$program < $ge/$1.txt"
+	exit 0
+fi
+
+enum=1
+n=0
+
+while [ $enum -le 20 ]; do
+	$dir/$program < $ge/$enum.txt > tmp-$enum-correct-stdout.txt 2> tmp-$enum-correct-stderr.txt
+	./$program < $ge/$enum.txt > tmp-$enum-test-stdout.txt 2> tmp-$enum-test-stderr.txt
+
+    cat tmp-$enum-correct-stdout.txt | tr " " "\n" | sort | uniq > tmp-$enum-correct-stdout-sorted.txt
+    cat tmp-$enum-test-stdout.txt | tr " " "\n" | sort | uniq > tmp-$enum-test-stdout-sorted.txt
+
+	diffstdout=`diff -b tmp-$enum-test-stdout-sorted.txt tmp-$enum-correct-stdout-sorted.txt | wc -l`
+
+	if [ $diffstdout -ne 0 ]; then
+		echo "Problem $enum is incorrect."
+	fi
+
+	diffstderr=`diff -b tmp-$enum-test-stderr.txt tmp-$enum-correct-stderr.txt | wc -l`
+
+	if [ $diffstderr -ne 0 ]; then
+		echo "Problem $enum is incorrect. Leaving files for problem $enum."
+	fi
+
+	if [ $diffstdout -eq 0 ] && [ $diffstderr -eq 0 ]; then
+		echo "Problem $enum is correct."
+		n=`echo $n | awk '{ print $1 + 1 }'`
+
+        rm -f tmp-$enum-correct-stdout.txt tmp-$enum-correct-stdout-sorted.txt tmp-$enum-correct-stderr.txt
+        rm -f tmp-$enum-test-stdout.txt tmp-$enum-test-stdout-sorted.txt tmp-$enum-test-stderr.txt
+	fi
+
+	enum=`echo $enum | awk '{ print $1 + 1 }'`
+done
+
+echo ""
+
+echo "$n Correct out of 20"
