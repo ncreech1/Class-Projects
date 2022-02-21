@@ -1,0 +1,7 @@
+PRIZE     cancun     10000      1 All expense-paid vacation to Cancun
+PRIZE     mp3           40   5000 Free MP3 download from Bapster
+ADD_USER  the-donald   100 Donald Trump
+ADD_USER  tigerwoods     9 Tiger Woods
+ADD_PHONE tigerwoods 1-800-Big-Putt
+ADD_PHONE tigerwoods 865-974-4400
+MARK_USED Df18ly81CO1mo4 IDWNZJ20ENkAxP h0yuKnVD6DvRUu
