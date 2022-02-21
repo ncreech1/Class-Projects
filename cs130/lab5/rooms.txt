@@ -1,0 +1,29 @@
+Prison Cell
+~
+You are in a dark prison cell.
+~
+n 1
+~
+Cell Block
+~
+The hallway is empty.
+Someone is screaming down the hall to the west.
+~
+w 2
+e 3
+s 0
+~
+Lunch Hall
+~
+The room is full of prisoners eating lunch.
+One prisoner is screaming that he didn't get
+enough meatloaf.
+~
+e 1
+~
+Warden's Office
+~
+The Warden is sitting at his desk, glaring at you.
+~
+w 1
+~
